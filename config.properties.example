@@ -1,0 +1,5 @@
+# Archivo de ejemplo para configuración de entorno remoto (Consigna 4)
+# Copiar como config.properties y completar con los valores correspondientes
+API_BASE_URL=https://api.recordatorios.local/v1/
+API_KEY=REEMPLAZAR_CON_API_KEY_SIN_SECRETOS_REALES
+SYNC_TIMEOUT_SECONDS=15

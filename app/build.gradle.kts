@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -34,6 +35,16 @@ android {
     buildFeatures {
         compose = true
     }
+
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+
+    defaultConfig {
+        // ... tus líneas actuales (applicationId, minSdk, etc.) ...
+        buildConfigField("String", "API_BASE_URL", "\"https://api.recordatorios.local/v1/\"")
+    }
 }
 
 dependencies {
@@ -56,4 +67,17 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("androidx.compose.material:material-icons-extended")
+    // DataStore (Consigna 1)
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+// Room (Consigna 2)
+    val roomVersion = "2.7.0"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+
+    // Retrofit + OkHttp + Gson (Consigna 4)
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
